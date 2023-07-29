@@ -1,5 +1,7 @@
-#include <iostream>
-
+#include "Bitmap.h"
 int main(int, char**){
-    std::cout << "Hello, from fractal-images!\n";
+    fractal::Bitmap bitmap(800, 600);
+
+    bitmap.write("test.bmp");
+    return 0;
 }

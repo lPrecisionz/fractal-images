@@ -2,9 +2,9 @@
 
 #include <cstdint>
 
-#pragma pack(2)
-
 namespace fractal{
+
+#pragma pack(push, 2)
 
 struct BitmapInfo{
     uint32_t headerSize {40};
@@ -19,5 +19,7 @@ struct BitmapInfo{
     uint32_t colors; 
     uint32_t importantColors {0};
 };
+
+#pragma pack(pop)
 
 } //namespace fractal
