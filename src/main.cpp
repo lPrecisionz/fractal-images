@@ -14,13 +14,14 @@ int main(int, char**){
 
     for(int x = 0; x < WIDTH; x++){
         for(int y = 0; y < HEIGHT; y++){
-            double xFractal = (x - WIDTH/2) * (2.0/WIDTH);
-            double yFractal = (y - HEIGHT/2) * (2.0/HEIGHT);
+            double xFractal = (x - WIDTH/2 - 150) * (2.0/HEIGHT);
+            double yFractal = (y - HEIGHT/2) * (2.0/HEIGHT); //set both to height proportions to avoid disproportion
 
             int iterations = Mandelbrot::getIterations(xFractal, yFractal);
-            uint8_t red = (uint8_t)(256 * (static_cast<double>(iterations)/fractal::Mandelbrot::MAX_ITERATIONS));
+            uint8_t color = (uint8_t)(256 * (static_cast<double>(iterations)/fractal::Mandelbrot::MAX_ITERATIONS));
 
-            bitmap.setPixel(x, y, red, 0, 0);
+
+            bitmap.setPixel(x, y, color, 0, color);
             if(xFractal < min) min = xFractal;
             if(xFractal > max) max = xFractal;
         }
@@ -28,7 +29,7 @@ int main(int, char**){
 
     std::cout << "min: " << min << "; max: " << max << std::endl;
 
-    bitmap.write("test.bmp");
+    bitmap.write("fractal_image.bmp");
     std::cout << "finished" << std::endl;
 
     return 0;
